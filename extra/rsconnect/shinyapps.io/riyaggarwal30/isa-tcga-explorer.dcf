@@ -1,0 +1,10 @@
+name: isa-tcga-explorer
+title:
+username: riyaggarwal30
+account: riyaggarwal30
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17297522
+bundleId: 11950713
+url: https://riyaggarwal30.shinyapps.io/isa-tcga-explorer/
+version: 1

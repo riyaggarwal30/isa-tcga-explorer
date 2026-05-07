@@ -1,0 +1,50 @@
+---
+title: "isoform_switch_analysis"
+output: html_document
+date: "2026-05-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Isoform Switch Analysis of TCGA Cancer Data
+# Using IsoformSwitchAnalyzeR (Vitting-Seerup et al., 2019)
+# Author: Riya Aggarwal
+# Date: 4th May 2026
+# Description: Exploratory isoform switch analysis in colon (COAD) and lung 
+#              (LUAD) adenocarcinoma vs healthy tissue. Data: TCGA example 
+#              dataset bundled with IsoformSwitchAnalyzeR.
+```
+
+```{r}
+#loading the library
+library(IsoformSwitchAnalyzeR)
+
+#loading the data
+#The exampleSwitchListAnalyzed data contains real TCGA RNA-seq data with two comparisons:
+#1.COAD_ctrl vs COAD_cancer (colon adenocarcinoma)
+#2.LUAD_ctrl vs LUAD_cancer (lung adenocarcinoma)
+
+data("exampleSwitchListAnalyzed")
+exampleSwitchListAnalyzed
+```
+```{r}
+# the isoform switches and their functional consequences (eg - gain/loss of protein domain, NMD sensitivity, coding potential change, etc)
+extractSwitchSummary(exampleSwitchListAnalyzed, 
+                     filterForConsequences = TRUE)
+```
+```{r}
+#extracting out the top 10 genes with most number of isoform switching
+topgenes <- extractTopSwitches(
+    exampleSwitchListAnalyzed,
+    filterForConsequences = TRUE,
+    n = 10,
+    inEachComparison = TRUE
+)
+topgenes$gene_name
+
+```
+
+RBCK1 appears as top gene in both COAD and LUAD indicating it shows isoform switching in both types of cancers.
